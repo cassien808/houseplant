@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { phases } from "@/data/quizData";
+import tshirtIcon from "@/assets/tshirt-icon.png";
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -27,9 +28,9 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-          className="text-7xl mb-6"
+          className="mb-6"
         >
-          👕
+          <img src={tshirtIcon} alt="T-shirt" className="w-24 h-24 mx-auto" />
         </motion.div>
 
         <h1 className="text-5xl md:text-6xl font-bold text-primary-foreground mb-3 tracking-tight">
