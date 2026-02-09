@@ -148,6 +148,62 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
           </AnimatePresence>
         </section>
 
+        {/* Mini-Scenarios */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <h2 className="text-2xl font-bold text-foreground mb-2">Small Group Scenarios</h2>
+          <h4 className="text-base text-accent mb-5">Diagnose + Adjust the Environment</h4>
+          <div className="space-y-4">
+            {[
+              {
+                number: 1,
+                scenario: "A high performer is getting frustrated and disengaged",
+                emoji: "😤",
+                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+              },
+              {
+                number: 2,
+                scenario: "A team member is steady and reliable but being overlooked",
+                emoji: "🙂",
+                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+              },
+              {
+                number: 3,
+                scenario: "A specialist seems 'difficult' but reacts strongly to change",
+                emoji: "😰",
+                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+              },
+              {
+                number: 4,
+                scenario: "A key person is thriving, but everyone depends on them too much",
+                emoji: "🏋️",
+                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+              },
+            ].map((item) => (
+              <div key={item.number} className="bg-card border border-border rounded-xl overflow-hidden shadow-card">
+                <div className="flex items-start gap-4 p-5">
+                  <span className="text-3xl flex-shrink-0 mt-0.5">{item.emoji}</span>
+                  <div className="flex-1">
+                    <h4 className="text-xs text-accent font-bold uppercase tracking-wider mb-1">Scenario {item.number}</h4>
+                    <p className="font-bold text-foreground text-lg mb-3">{item.scenario}</p>
+                    <div className="space-y-1.5">
+                      {item.prompts.map((prompt, i) => (
+                        <div key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <span className="text-accent mt-0.5 flex-shrink-0">▸</span>
+                          <span>{prompt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
         {/* Key Takeaway */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
