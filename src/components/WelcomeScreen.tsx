@@ -30,7 +30,7 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
           transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
           className="mb-6"
         >
-          <img src={tshirtIcon} alt="T-shirt" className="w-24 h-24 mx-auto" />
+          <img src={tshirtIcon} alt="T-shirt" className="w-32 h-32 mx-auto" />
         </motion.div>
 
         <h1 className="text-5xl md:text-6xl font-bold text-primary-foreground mb-3 tracking-tight">
