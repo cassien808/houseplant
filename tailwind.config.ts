@@ -47,6 +47,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // SanMar Extended
+        "deep-blue": "hsl(var(--deep-blue))",
+        "core-blue": "hsl(var(--core-blue))",
+        "sky-blue": "hsl(var(--sky-blue))",
+        "foundation-blue": "hsl(var(--foundation-blue))",
+        "off-white": "hsl(var(--off-white))",
+        "warm-gray": "hsl(var(--warm-gray))",
+        "forest-green": "hsl(var(--forest-green))",
+        "sonic-green": "hsl(var(--sonic-green))",
+        "field-green": "hsl(var(--field-green))",
+        "heritage-orange": "hsl(var(--heritage-orange))",
+        "rucksack-orange": "hsl(var(--rucksack-orange))",
+        "origin-yellow": "hsl(var(--origin-yellow))",
+        "dark-gray": "hsl(var(--dark-gray))",
+        "points-gold": "hsl(var(--points-gold))",
+        "streak-fire": "hsl(var(--streak-fire))",
+        "success-green": "hsl(var(--success-green))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -65,25 +82,28 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 8px hsl(var(--origin-yellow) / 0.3)" },
+          "50%": { boxShadow: "0 0 24px hsl(var(--origin-yellow) / 0.6)" },
+        },
+        "score-pop": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.3)" },
+          "100%": { transform: "scale(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "score-pop": "score-pop 0.4s ease-out",
       },
     },
   },
