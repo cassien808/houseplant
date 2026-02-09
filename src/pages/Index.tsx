@@ -1,12 +1,13 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import WelcomeScreen from "@/components/WelcomeScreen";
+import CourseReview from "@/components/CourseReview";
 import QuizQuestion from "@/components/QuizQuestion";
 import ScoreBar from "@/components/ScoreBar";
 import ResultsScreen from "@/components/ResultsScreen";
 import { questions } from "@/data/quizData";
 
-type Screen = "welcome" | "quiz" | "results";
+type Screen = "welcome" | "review" | "quiz" | "results";
 
 const POINTS_BASE = 100;
 const STREAK_BONUS = 50;
@@ -45,7 +46,11 @@ const Index = () => {
   }, [currentIndex, streak]);
 
   if (screen === "welcome") {
-    return <WelcomeScreen onStart={handleStart} />;
+    return <WelcomeScreen onStart={handleStart} onReview={() => setScreen("review")} />;
+  }
+
+  if (screen === "review") {
+    return <CourseReview onStartQuiz={handleStart} onBack={() => setScreen("welcome")} />;
   }
 
   if (screen === "results") {

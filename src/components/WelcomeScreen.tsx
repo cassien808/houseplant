@@ -3,9 +3,10 @@ import { phases } from "@/data/quizData";
 
 interface WelcomeScreenProps {
   onStart: () => void;
+  onReview: () => void;
 }
 
-const WelcomeScreen = ({ onStart }: WelcomeScreenProps) => {
+const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
   return (
     <div className="min-h-screen bg-gradient-hero flex flex-col items-center justify-center px-4 relative overflow-hidden">
       {/* Background texture */}
@@ -58,17 +59,30 @@ const WelcomeScreen = ({ onStart }: WelcomeScreenProps) => {
           ))}
         </div>
 
-        <motion.button
+        {/* Two CTA buttons */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={onStart}
-          className="bg-origin-yellow text-primary font-bold text-lg px-10 py-4 rounded-xl shadow-glow-gold hover:brightness-110 transition-all"
+          className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          Start the Challenge 🚀
-        </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onReview}
+            className="border-2 border-sky-blue text-sky-blue font-bold text-lg px-8 py-4 rounded-xl hover:bg-sky-blue/10 transition-all"
+          >
+            📖 Review the Course
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onStart}
+            className="bg-origin-yellow text-primary font-bold text-lg px-10 py-4 rounded-xl shadow-glow-gold hover:brightness-110 transition-all"
+          >
+            Start the Challenge 🚀
+          </motion.button>
+        </motion.div>
       </motion.div>
     </div>
   );
