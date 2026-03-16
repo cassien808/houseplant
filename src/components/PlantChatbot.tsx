@@ -148,7 +148,7 @@ const PlantChatbot = () => {
                     }`}
                   >
                     {msg.role === "assistant" ? (
-                      <div className="prose prose-sm max-w-none [&_p]:m-0 [&_ul]:my-1 [&_li]:my-0">
+                      <div className="prose prose-sm max-w-none [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:my-2 [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:pl-4 [&_li]:my-1 [&_li]:marker:text-accent [&_strong]:text-foreground [&_h3]:text-sm [&_h3]:font-bold [&_h3]:mt-3 [&_h3]:mb-1">
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     ) : (
