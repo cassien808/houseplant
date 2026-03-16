@@ -9,17 +9,17 @@ interface ResultsScreenProps {
 }
 
 const getBadge = (percentage: number) => {
-  if (percentage >= 90) return { title: "Production Master", emoji: "🏆", color: "text-points-gold" };
-  if (percentage >= 70) return { title: "Team Builder", emoji: "🌟", color: "text-accent" };
+  if (percentage >= 90) return { title: "Master Gardener", emoji: "🏆", color: "text-points-gold" };
+  if (percentage >= 70) return { title: "Green Thumb", emoji: "🌟", color: "text-accent" };
   if (percentage >= 50) return { title: "Growing Leader", emoji: "🌱", color: "text-sonic-green" };
   return { title: "Seed Planter", emoji: "🌾", color: "text-heritage-orange" };
 };
 
 const lensOptions = [
-  { label: "Specs", detail: "Help one team member clarify their 'done' criteria before they start work" },
-  { label: "Infrastructure", detail: "Ask one team member what process or resource is slowing them down" },
-  { label: "Materials", detail: "Check in with one person about what support or tools they are missing" },
-  { label: "Capacity", detail: "Have a conversation about workload boundaries with one team member" },
+  { label: "Light", detail: "One-sentence priorities for the week; clarify 'what good looks like'" },
+  { label: "Water", detail: "10-minute check-in focused on obstacles + wins" },
+  { label: "Soil", detail: "Remove one friction point (process, tool, meeting)" },
+  { label: "Space", detail: "Give autonomy + boundaries (decision rights, no-meeting block)" },
 ];
 
 const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: ResultsScreenProps) => {
@@ -97,20 +97,20 @@ const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: Res
           {/* Key takeaway */}
           <div className="bg-muted rounded-xl p-5 mb-8 text-left">
             <p className="text-sm text-muted-foreground italic">
-              "Better teams aren't about pushing harder. They're about matching care to needs and adjusting the process."
+              "Better teams aren't about pushing harder. They're about matching care to needs and adjusting the environment."
             </p>
           </div>
         </motion.div>
 
-        {/* 7-Day Action Plan */}
+        {/* 7-Day Care Plan */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
           className="bg-card rounded-2xl shadow-card p-8"
         >
-          <h2 className="text-2xl font-bold text-foreground mb-1 text-center">7-Day Action Plan</h2>
-          <p className="text-sm text-muted-foreground text-center mb-6">Pick ONE lens to strengthen this week</p>
+          <h2 className="text-2xl font-bold text-foreground mb-1 text-center">Your 7-Day Care Plan</h2>
+          <p className="text-sm text-muted-foreground text-center mb-6">Pick ONE care element to strengthen this week</p>
 
           {submitted ? (
             <motion.div
@@ -118,15 +118,15 @@ const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: Res
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-6"
             >
-              <div className="text-5xl mb-4">💚</div>
+              <div className="text-5xl mb-4">🌿</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Commitment Saved!</h3>
               <div className="bg-muted rounded-xl p-5 text-left mb-4">
-                <p className="text-sm text-muted-foreground mb-1 font-semibold">Your lens: {lensOptions[selectedLens!].label}</p>
+                <p className="text-sm text-muted-foreground mb-1 font-semibold">Your care element: {lensOptions[selectedLens!].label}</p>
                 <p className="text-foreground">
                   I will <span className="font-bold">{commitment.action}</span> by <span className="font-bold">{commitment.by}</span> so that <span className="font-bold">{commitment.soThat}</span>.
                 </p>
               </div>
-              <p className="text-sm text-sonic-green font-semibold">Every team member matters. Go make an impact! 🌱</p>
+              <p className="text-sm text-sonic-green font-semibold">Every team member matters. Help them photosynthesize! 🌱</p>
             </motion.div>
           ) : (
             <>
@@ -199,7 +199,7 @@ const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: Res
                     disabled={!commitment.action.trim() || !commitment.by.trim() || !commitment.soThat.trim()}
                     className="bg-sonic-green text-primary-foreground font-bold text-base px-6 py-3 rounded-xl shadow-glow-green hover:brightness-110 transition-all w-full disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none"
                   >
-                    Commit to My Plan 💚
+                    Commit to My Plan 🌿
                   </motion.button>
                 </motion.div>
               )}
