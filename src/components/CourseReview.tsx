@@ -6,50 +6,50 @@ const phaseHighlights = [
   {
     phase: phases[0],
     personas: [
-      { name: "The Network Starter", stage: "Cotton Seed Planting", desc: "One seed becomes an entire field. Expands reach exponentially." },
-      { name: "The Resilient Grower", stage: "Cotton Growing", desc: "Thrives in tough conditions with minimal intervention. Steady results." },
-      { name: "The Steady Deliverer", stage: "Harvesting", desc: "Nearly impossible to derail. Performs even when conditions aren't perfect." },
+      { name: "The Sales Network", stage: "Pothos", desc: "Put me anywhere and I'll trail forever. One good rep turns into an entire pipeline." },
+      { name: "The Compliance Rockstar", stage: "Snake Plant", desc: "Thrives on neglect, purifies the air, grows in the darkest corner. Self-managing teams wish they were this tough." },
+      { name: "Enterprise Project Energy", stage: "ZZ Plant", desc: "Nearly impossible to kill. Keeps delivering even when the lights are off and the budget is tight." },
     ],
   },
   {
     phase: phases[1],
     personas: [
-      { name: "The Transformer", stage: "Ginning & Processing", desc: "Turns raw material into something valuable with room to operate." },
-      { name: "The Reserve Keeper", stage: "Fiber Storage", desc: "Stores everything needed and stays ready under pressure." },
-      { name: "The Precision Specialist", stage: "Spinning Yarn", desc: "Independent, focused work. Clear parameters yield quality output." },
+      { name: "The High-Performer", stage: "Monstera", desc: "Big, bold leaves, but will split if I don't get room to grow. Promotion material — just need a bigger pot." },
+      { name: "The Talent Bench Buddy", stage: "Succulent", desc: "Stores everything it needs and still looks good under pressure. Future leaders in training." },
+      { name: "The Independent Contributor", stage: "Cactus", desc: "Armed, spiky, and proud. Give me sun and leave me alone — I'll bloom when ready." },
     ],
   },
   {
     phase: phases[2],
     personas: [
-      { name: "The Sensitive Specialist", stage: "Dyeing & Coloring", desc: "Brilliant when conditions are exactly right. Timing and chemistry matter." },
-      { name: "The Culture Detector", stage: "Fabric Inspection", desc: "First to sense when something's off. Early warning system." },
-      { name: "The Steady Builder", stage: "Weaving Fabric", desc: "Quietly builds something substantial. Reliable and compounding." },
+      { name: "The Sensitive Specialist", stage: "Calathea", desc: "Leaves fold up at night and throw tantrums if conditions change. Brilliant when the environment is exactly right." },
+      { name: "The Culture Canaries", stage: "Peace Lily", desc: "First to droop when the environment's off. Listen when they speak — they're telling you the vibe is wrong." },
+      { name: "The Steady Eddie", stage: "Rubber Plant", desc: "Quietly grows tall and glossy with basic care. Your reliable mid-level leader who just keeps compounding." },
     ],
   },
   {
     phase: phases[3],
     personas: [
-      { name: "The Adaptable Planner", stage: "Pattern Making & Cutting", desc: "Grows with whatever support structure provided. Optimizes around patterns." },
-      { name: "The Connection Mentor", stage: "Sewing Assembly", desc: "One stitch connects to the next. Builds the whole from pieces." },
-      { name: "The Showstopper", stage: "Screen Printing", desc: "Takes perfect alignment, but when it prints…everyone notices." },
+      { name: "The Adaptable Team Player", stage: "Philodendron", desc: "Climbs on trails — whatever the support structure allows. Grows with the trellis you give it." },
+      { name: "The Mentor", stage: "Spider Plant", desc: "Sends out babies like it's mentoring the next generation. One plan becomes ten in a year." },
+      { name: "The Divaficus", stage: "Fiddle-Leaf Fig", desc: "Stunning when happy, dramatic when not. High-maintenance superstar — worth it only when you have the bandwidth." },
     ],
   },
   {
     phase: phases[4],
     personas: [
-      { name: "The Distributed Inspector", stage: "Quality Control", desc: "Incredibly thorough without drowning in bureaucracy." },
-      { name: "The Detail Finisher", stage: "Folding & Tagging", desc: "Precision and care. Thrives on autonomy and clear standards." },
-      { name: "The Logistics Networker", stage: "Packaging & Shipping", desc: "One package becomes ten destinations. Adapts to any channel." },
+      { name: "The Stretch Gold", stage: "Birds of Paradise", desc: "Takes years and perfect conditions, but when it flowers…everyone stops and stares." },
+      { name: "The Remote Team", stage: "String of Pearls", desc: "Looks delicate, actually incredibly resilient if you don't drown them with too many Teams or Zoom calls." },
+      { name: "The Contractor", stage: "Air Plant (Tillandsia)", desc: "No soil, no pot, just a quick weekly soak and lots of light. Thrives on freedom." },
     ],
   },
 ];
 
 const coreModel = [
-  { label: "Specs", detail: "Clarity + priorities", icon: "📋" },
-  { label: "Infrastructure", detail: "Culture + resources + process", icon: "🏛️" },
-  { label: "Materials", detail: "Support + feedback cadence", icon: "🧰" },
-  { label: "Capacity", detail: "Autonomy + boundaries + role definition", icon: "⚖️" },
+  { label: "Light", detail: "Clarity + Priorities", icon: "☀️" },
+  { label: "Water", detail: "Support + Feedback Cadence", icon: "💧" },
+  { label: "Soil", detail: "Culture + Resources + Processes", icon: "⛰️" },
+  { label: "Space", detail: "Autonomy + Boundaries + Role Definition", icon: "📐" },
 ];
 
 interface CourseReviewProps {
@@ -80,7 +80,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
           animate={{ opacity: 1, y: 0 }}
         >
           <h2 className="text-2xl font-bold text-foreground mb-2">The Core Model</h2>
-          <h4 className="text-base text-accent mb-5">Production Care = People Leadership</h4>
+          <h4 className="text-base text-accent mb-5">Plant Care = Leadership Care</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {coreModel.map((item) => (
               <div key={item.label} className="bg-card border border-border rounded-xl p-4 shadow-card">
@@ -96,7 +96,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
 
         {/* Phase Tabs */}
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-5">15 Team Personas</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-5">15 Plant Personas</h2>
           <div className="flex flex-wrap gap-2 mb-6">
             {phases.map((phase, i) => (
               <button
@@ -125,7 +125,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
               <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-card">
                 <div className="bg-gradient-blue px-5 py-4">
                   <p className="text-sky-blue text-xs font-semibold uppercase tracking-wider">
-                    Phase {phaseHighlights[activePhase].phase.id}
+                    Group {phaseHighlights[activePhase].phase.id}
                   </p>
                   <h3 className="text-xl font-bold text-primary-foreground">
                     {phaseHighlights[activePhase].phase.title}
@@ -162,25 +162,25 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
                 number: 1,
                 scenario: "A high performer is getting frustrated and disengaged",
                 emoji: "😤",
-                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+                prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
               },
               {
                 number: 2,
                 scenario: "A team member is steady and reliable but being overlooked",
                 emoji: "🙂",
-                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+                prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
               },
               {
                 number: 3,
                 scenario: "A specialist seems 'difficult' but reacts strongly to change",
                 emoji: "😰",
-                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+                prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
               },
               {
                 number: 4,
                 scenario: "A key person is thriving, but everyone depends on them too much",
                 emoji: "🏋️",
-                prompts: ["Which production process persona fits best? Why?", "What's the production issue (Specs / Infrastructure / Materials / Capacity)?", "What are 2 care changes you'd make this week?"],
+                prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
               },
             ].map((item) => (
               <div key={item.number} className="bg-card border border-border rounded-xl overflow-hidden shadow-card">
@@ -213,7 +213,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
         >
           <h4 className="text-sm text-accent font-bold uppercase tracking-wider mb-2">Key Takeaway</h4>
           <p className="text-foreground text-lg italic leading-relaxed">
-            "Better teams aren't about pushing harder. They're about matching care to needs and adjusting the process."
+            "Better teams aren't about pushing harder. They're about matching care to needs and adjusting the environment."
           </p>
         </motion.section>
 
@@ -225,7 +225,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
             onClick={onStartQuiz}
             className="bg-origin-yellow text-primary font-bold text-lg px-10 py-4 rounded-xl shadow-glow-gold hover:brightness-110 transition-all"
           >
-            I'm Ready — Start the Quiz 🚀
+            I'm Ready — Start the Quiz 🌱
           </motion.button>
         </div>
       </div>

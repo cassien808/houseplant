@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { phases } from "@/data/quizData";
-import TshirtIcon from "@/components/TshirtIcon";
+import PlantIcon from "@/components/TshirtIcon";
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -23,25 +23,25 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center relative z-10 max-w-2xl"
       >
-        {/* T-shirt icon */}
+        {/* Plant icon */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
           className="mb-6"
         >
-          <TshirtIcon className="w-36 h-36 mx-auto" />
+          <PlantIcon className="w-36 h-36 mx-auto" />
         </motion.div>
 
         <h1 className="text-5xl md:text-6xl font-bold text-primary-foreground mb-3 tracking-tight">
-          From Seed to Shirt
+          Houseplant Harmony
         </h1>
         <h4 className="text-xl md:text-2xl text-sky-blue mb-2 italic">
-          Building Teams One Stage at a Time
+          Growing Thriving Teams Through Plant Personas
         </h4>
         <p className="text-secondary/80 text-lg mb-10">
           Test your knowledge from the mini-workshop. <br className="hidden sm:block" />
-          15 questions across 5 production phases.
+          15 questions across 5 plant groups.
         </p>
 
         {/* Phase preview */}
@@ -73,7 +73,7 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
             onClick={onReview}
             className="border-2 border-sky-blue text-sky-blue font-bold text-lg px-8 py-4 rounded-xl hover:bg-sky-blue/10 transition-all"
           >
-            📖 Review the Course
+            🌿 Review the Course
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -81,7 +81,7 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
             onClick={onStart}
             className="bg-origin-yellow text-primary font-bold text-lg px-10 py-4 rounded-xl shadow-glow-gold hover:brightness-110 transition-all"
           >
-            Start the Challenge 🚀
+            Start the Challenge 🌱
           </motion.button>
         </motion.div>
       </motion.div>
