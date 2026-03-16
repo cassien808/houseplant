@@ -140,19 +140,34 @@ const PlantChatbot = () => {
                   key={i}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div
-                    className={`max-w-[85%] rounded-xl px-3 py-2 text-sm ${
-                      msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-br-sm"
-                        : "bg-muted text-foreground rounded-bl-sm"
-                    }`}
-                  >
-                    {msg.role === "assistant" ? (
-                      <div className="prose prose-sm max-w-none [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:my-2 [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:pl-4 [&_li]:my-1 [&_li]:marker:text-accent [&_strong]:text-foreground [&_h3]:text-sm [&_h3]:font-bold [&_h3]:mt-3 [&_h3]:mb-1">
-                        <ReactMarkdown>{msg.content}</ReactMarkdown>
-                      </div>
-                    ) : (
-                      msg.content
+                  <div className={`max-w-[85%] ${msg.role === "user" ? "" : ""}`}>
+                    <div
+                      className={`rounded-xl px-3 py-2 text-sm ${
+                        msg.role === "user"
+                          ? "bg-primary text-primary-foreground rounded-br-sm"
+                          : "bg-muted text-foreground rounded-bl-sm"
+                      }`}
+                    >
+                      {msg.role === "assistant" ? (
+                        <div className="prose prose-sm max-w-none [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:my-2 [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:pl-4 [&_li]:my-1 [&_li]:marker:text-accent [&_strong]:text-foreground [&_h3]:text-sm [&_h3]:font-bold [&_h3]:mt-3 [&_h3]:mb-1">
+                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                        </div>
+                      ) : (
+                        msg.content
+                      )}
+                    </div>
+                    {msg.role === "assistant" && !isLoading && (
+                      <button
+                        onClick={() => {
+                          const subject = encodeURIComponent("Plant Coach Recommendation");
+                          const body = encodeURIComponent(msg.content);
+                          window.open(`mailto:?subject=${subject}&body=${body}`, "_blank");
+                        }}
+                        className="mt-1 ml-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        title="Email this recommendation"
+                      >
+                        📧 Email this
+                      </button>
                     )}
                   </div>
                 </div>
