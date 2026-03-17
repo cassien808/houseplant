@@ -41,7 +41,7 @@ const WelcomeScreen = ({ onStart, onReview }: WelcomeScreenProps) => {
         </h4>
         <p className="text-secondary/80 text-lg mb-10">
           Test your knowledge from the mini-workshop. <br className="hidden sm:block" />
-          15 questions across 5 plant groups.
+          5 questions across 5 plant groups.
         </p>
 
         {/* Phase preview */}
