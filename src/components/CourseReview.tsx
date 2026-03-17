@@ -9,7 +9,7 @@ const phaseHighlights = [
     personas: [
       { name: "The Sales Network", stage: "Pothos", desc: "Put me anywhere and I'll trail forever. One good rep turns into an entire pipeline." },
       { name: "The Compliance Rockstar", stage: "Snake Plant", desc: "Thrives on neglect, purifies the air, grows in the darkest corner. Self-managing teams wish they were this tough." },
-      { name: "Enterprise Project Energy", stage: "ZZ Plant", desc: "Nearly impossible to kill. Keeps delivering even when the lights are off and the budget is tight." },
+      { name: "The Reliable Workhorse", stage: "ZZ Plant", desc: "Nearly impossible to kill. Keeps delivering even when the lights are off and the budget is tight." },
     ],
   },
   {

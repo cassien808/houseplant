@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 import { Question } from "@/data/quizData";
 
 interface QuizQuestionProps {
   question: Question;
   onAnswer: (correct: boolean) => void;
+  onBack: () => void;
   questionNumber: number;
   totalQuestions: number;
 }
 
-const QuizQuestion = ({ question, onAnswer, questionNumber, totalQuestions }: QuizQuestionProps) => {
+const QuizQuestion = ({ question, onAnswer, onBack, questionNumber, totalQuestions }: QuizQuestionProps) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -36,6 +38,16 @@ const QuizQuestion = ({ question, onAnswer, questionNumber, totalQuestions }: Qu
       transition={{ duration: 0.4 }}
       className="w-full max-w-2xl mx-auto"
     >
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        disabled={showResult}
+        className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors mb-4 disabled:opacity-50"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        <span className="text-sm font-medium">Back</span>
+      </button>
+
       {/* Phase badge */}
       <div className="flex items-center gap-2 mb-4">
         <span className="text-2xl">{question.emoji}</span>
