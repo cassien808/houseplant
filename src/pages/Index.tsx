@@ -64,6 +64,14 @@ const Index = () => {
     );
   }
 
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((i) => i - 1);
+    } else {
+      setScreen("welcome");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-start px-4 py-8 md:py-12">
       <ScoreBar
