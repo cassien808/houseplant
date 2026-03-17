@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { phases } from "@/data/quizData";
 
 const phaseHighlights = [
@@ -59,6 +60,7 @@ interface CourseReviewProps {
 
 const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
   const [activePhase, setActivePhase] = useState(0);
+  const [expandedScenario, setExpandedScenario] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
@@ -97,15 +99,16 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
         {/* Phase Tabs */}
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-5">15 Plant Personas</h2>
+          <p className="text-sm text-muted-foreground mb-3">👆 Tap a group to explore its personas</p>
           <div className="flex flex-wrap gap-2 mb-6">
             {phases.map((phase, i) => (
               <button
                 key={phase.id}
                 onClick={() => setActivePhase(i)}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                   activePhase === i
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-secondary"
+                    ? "bg-primary text-primary-foreground ring-2 ring-accent"
+                    : "bg-muted text-muted-foreground hover:bg-secondary hover:text-secondary-foreground"
                 }`}
               >
                 <span className="mr-1.5">{phase.icon}</span>
@@ -155,7 +158,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
           transition={{ delay: 0.1 }}
         >
           <h2 className="text-2xl font-bold text-foreground mb-2">Small Group Scenarios</h2>
-          <h4 className="text-base text-accent mb-5">Diagnose + Adjust the Environment</h4>
+          <p className="text-sm text-muted-foreground mb-5">👆 Click a scenario to reveal suggested responses</p>
           <div className="space-y-4">
             {[
               {
@@ -163,31 +166,58 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
                 scenario: "A high performer is getting frustrated and disengaged",
                 emoji: "😤",
                 prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
+                answers: [
+                  "The High-Performer (Monstera) — big, bold leaves but will split if they don't get room to grow. This person needs a bigger pot (expanded role or promotion path).",
+                  "Space — they lack autonomy, boundaries, or a clear next step. They've outgrown their current role definition.",
+                  "1) Have a candid career conversation about their growth trajectory this week. 2) Delegate a stretch project that gives them visible ownership.",
+                ],
               },
               {
                 number: 2,
                 scenario: "A team member is steady and reliable but being overlooked",
                 emoji: "🙂",
                 prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
+                answers: [
+                  "The Steady Eddie (Rubber Plant) — quietly grows tall and glossy with basic care. Your reliable mid-level leader who just keeps compounding.",
+                  "Light — they lack visibility and recognition. Their consistent contributions aren't being seen or celebrated.",
+                  "1) Publicly acknowledge their contributions in a team meeting. 2) Include them in a cross-functional initiative to increase their visibility.",
+                ],
               },
               {
                 number: 3,
                 scenario: "A specialist seems 'difficult' but reacts strongly to change",
                 emoji: "😰",
                 prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
+                answers: [
+                  "The Sensitive Specialist (Calathea) — brilliant when the environment is exactly right, but throws tantrums if conditions change suddenly.",
+                  "Soil — the culture, resources, or processes around them have shifted and they haven't had time to adapt.",
+                  "1) Give advance notice of upcoming changes and explain the 'why' behind them. 2) Create a stable routine or check-in cadence so they feel grounded.",
+                ],
               },
               {
                 number: 4,
                 scenario: "A key person is thriving, but everyone depends on them too much",
                 emoji: "🏋️",
                 prompts: ["Which plant persona fits best? Why?", "What's the environmental challenge (Light / Water / Soil / Space)?", "What are 2 care changes you'd make this week?"],
+                answers: [
+                  "The Mentor (Spider Plant) — sends out babies like it's mentoring the next generation. But right now the parent plant is carrying too much.",
+                  "Water — too much support flowing to them (overwatering with responsibility) without distributing it to others.",
+                  "1) Identify 2 tasks they currently own that can be delegated to team members they've been mentoring. 2) Pair them with a 'buddy' who shadows them to build redundancy.",
+                ],
               },
             ].map((item) => (
-              <div key={item.number} className="bg-card border border-border rounded-xl overflow-hidden shadow-card">
+              <div
+                key={item.number}
+                className="bg-card border border-border rounded-xl overflow-hidden shadow-card cursor-pointer transition-all hover:border-accent/50"
+                onClick={() => setExpandedScenario(expandedScenario === item.number ? null : item.number)}
+              >
                 <div className="flex items-start gap-4 p-5">
                   <span className="text-3xl flex-shrink-0 mt-0.5">{item.emoji}</span>
                   <div className="flex-1">
-                    <h4 className="text-xs text-accent font-bold uppercase tracking-wider mb-1">Scenario {item.number}</h4>
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xs text-accent font-bold uppercase tracking-wider mb-1">Scenario {item.number}</h4>
+                      <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${expandedScenario === item.number ? "rotate-180" : ""}`} />
+                    </div>
                     <p className="font-bold text-foreground text-lg mb-3">{item.scenario}</p>
                     <div className="space-y-1.5">
                       {item.prompts.map((prompt, i) => (
@@ -199,6 +229,27 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
                     </div>
                   </div>
                 </div>
+                <AnimatePresence>
+                  {expandedScenario === item.number && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-t border-border bg-muted/50 px-5 py-4 space-y-3">
+                        <h5 className="text-xs font-bold uppercase tracking-wider text-accent">💡 Suggested Responses</h5>
+                        {item.answers.map((answer, i) => (
+                          <div key={i} className="flex items-start gap-2 text-sm text-foreground">
+                            <span className="text-accent font-bold mt-0.5 flex-shrink-0">{i + 1}.</span>
+                            <span>{answer}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
