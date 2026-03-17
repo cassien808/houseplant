@@ -99,15 +99,16 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
         {/* Phase Tabs */}
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-5">15 Plant Personas</h2>
+          <p className="text-sm text-muted-foreground mb-3">👆 Tap a group to explore its personas</p>
           <div className="flex flex-wrap gap-2 mb-6">
             {phases.map((phase, i) => (
               <button
                 key={phase.id}
                 onClick={() => setActivePhase(i)}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                   activePhase === i
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-secondary"
+                    ? "bg-primary text-primary-foreground ring-2 ring-accent"
+                    : "bg-muted text-muted-foreground hover:bg-secondary hover:text-secondary-foreground"
                 }`}
               >
                 <span className="mr-1.5">{phase.icon}</span>
