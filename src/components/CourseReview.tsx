@@ -60,6 +60,7 @@ interface CourseReviewProps {
 
 const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
   const [activePhase, setActivePhase] = useState(0);
+  const [expandedScenario, setExpandedScenario] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
