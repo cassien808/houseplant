@@ -84,6 +84,7 @@ const Index = () => {
         <QuizQuestion
           key={questions[currentIndex].id}
           question={questions[currentIndex]}
+          onBack={handleBack}
           onAnswer={handleAnswer}
           questionNumber={currentIndex + 1}
           totalQuestions={questions.length}

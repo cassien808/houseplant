@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 import { Question } from "@/data/quizData";
 
 interface QuizQuestionProps {
   question: Question;
   onAnswer: (correct: boolean) => void;
+  onBack: () => void;
   questionNumber: number;
   totalQuestions: number;
 }
 
-const QuizQuestion = ({ question, onAnswer, questionNumber, totalQuestions }: QuizQuestionProps) => {
+const QuizQuestion = ({ question, onAnswer, onBack, questionNumber, totalQuestions }: QuizQuestionProps) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
