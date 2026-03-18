@@ -51,15 +51,82 @@ const SYSTEM_PROMPT = `You are the Houseplant Harmony Coach — a warm, knowledg
 - If the question is outside this framework, gently redirect to the plant personas and Core Model.
 - Keep responses concise — aim for 150-250 words unless the user asks for more detail.`;
 
+// Simple in-memory rate limiter by IP
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 10; // max requests per window
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
+// Input validation constants
+const MAX_MESSAGES = 20;
+const MAX_CONTENT_LENGTH = 2000;
+
+function validateMessages(messages: unknown): { valid: boolean; error?: string } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: "Invalid request format" };
+  }
+  if (messages.length === 0 || messages.length > MAX_MESSAGES) {
+    return { valid: false, error: `Message count must be between 1 and ${MAX_MESSAGES}` };
+  }
+  for (const m of messages) {
+    if (typeof m !== "object" || m === null) {
+      return { valid: false, error: "Invalid message format" };
+    }
+    if (!["user", "assistant"].includes(m.role)) {
+      return { valid: false, error: "Invalid message role" };
+    }
+    if (typeof m.content !== "string" || m.content.length === 0 || m.content.length > MAX_CONTENT_LENGTH) {
+      return { valid: false, error: `Message content must be a string between 1 and ${MAX_CONTENT_LENGTH} characters` };
+    }
+  }
+  return { valid: true };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages } = await req.json();
+    // Rate limiting by IP
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (isRateLimited(ip)) {
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please wait a moment and try again." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const body = await req.json();
+    const { messages } = body;
+
+    // Validate input
+    const validation = validateMessages(messages);
+    if (!validation.valid) {
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!LOVABLE_API_KEY) {
+      console.error("LOVABLE_API_KEY is not configured");
+      return new Response(
+        JSON.stringify({ error: "Service temporarily unavailable" }),
+        { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     const response = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -107,7 +174,7 @@ serve(async (req) => {
   } catch (e) {
     console.error("plant-chat error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ error: "An unexpected error occurred. Please try again." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
