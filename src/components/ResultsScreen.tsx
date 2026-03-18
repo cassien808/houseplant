@@ -6,6 +6,7 @@ interface ResultsScreenProps {
   totalQuestions: number;
   correctAnswers: number;
   onRestart: () => void;
+  onHome: () => void;
 }
 
 const getBadge = (percentage: number) => {
