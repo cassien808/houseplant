@@ -3,7 +3,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
-  base: '/houseplant/', // Must match your exact GitHub repo name
+  base: '/houseplant/',
   server: {
     host: "::",
     port: 8080,
