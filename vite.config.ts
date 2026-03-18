@@ -12,6 +12,7 @@ export default defineConfig(() => ({
   },
   plugins: [],
   resolve: {
+    preserveSymlinks: true,
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
