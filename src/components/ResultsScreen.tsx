@@ -23,7 +23,7 @@ const lensOptions = [
   { label: "Space", detail: "Give autonomy + boundaries (decision rights, no-meeting block)" },
 ];
 
-const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: ResultsScreenProps) => {
+const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart, onHome }: ResultsScreenProps) => {
   const percentage = Math.round((correctAnswers / totalQuestions) * 100);
   const badge = getBadge(percentage);
   const [selectedLens, setSelectedLens] = useState<number | null>(null);
