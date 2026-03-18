@@ -6,6 +6,7 @@ interface ResultsScreenProps {
   totalQuestions: number;
   correctAnswers: number;
   onRestart: () => void;
+  onHome: () => void;
 }
 
 const getBadge = (percentage: number) => {
@@ -22,7 +23,7 @@ const lensOptions = [
   { label: "Space", detail: "Give autonomy + boundaries (decision rights, no-meeting block)" },
 ];
 
-const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: ResultsScreenProps) => {
+const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart, onHome }: ResultsScreenProps) => {
   const percentage = Math.round((correctAnswers / totalQuestions) * 100);
   const badge = getBadge(percentage);
   const [selectedLens, setSelectedLens] = useState<number | null>(null);
@@ -212,7 +213,7 @@ const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: Res
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="text-center"
+          className="text-center space-y-3"
         >
           <motion.button
             whileHover={{ scale: 1.03 }}
@@ -222,6 +223,12 @@ const ResultsScreen = ({ score, totalQuestions, correctAnswers, onRestart }: Res
           >
             Try Again 🔄
           </motion.button>
+          <button
+            onClick={onHome}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+          >
+            Return to Main
+          </button>
         </motion.div>
       </div>
     </div>

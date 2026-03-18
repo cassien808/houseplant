@@ -269,7 +269,7 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
         </motion.section>
 
         {/* CTA */}
-        <div className="text-center pb-8">
+        <div className="text-center pb-8 space-y-3">
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -278,6 +278,14 @@ const CourseReview = ({ onStartQuiz, onBack }: CourseReviewProps) => {
           >
             I'm Ready — Start the Quiz 🌱
           </motion.button>
+          <div>
+            <button
+              onClick={onBack}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+            >
+              Return to Main
+            </button>
+          </div>
         </div>
       </div>
     </div>

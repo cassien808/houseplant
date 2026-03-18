@@ -60,6 +60,7 @@ const Index = () => {
         totalQuestions={questions.length}
         correctAnswers={correctAnswers}
         onRestart={handleStart}
+        onHome={() => setScreen("welcome")}
       />
     );
   }
